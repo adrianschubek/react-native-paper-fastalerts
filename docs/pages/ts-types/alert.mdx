@@ -1,0 +1,82 @@
+# Alert
+
+import { Callout } from "nextra/components";
+
+<Callout type="info" emoji="ℹ️">
+  The following type definitons are updated on a best effort basis and may not
+  be always up to date. Checkout the [type
+  definition](https://github.com/adrianschubek/react-native-paper-fastalerts/blob/main/src/stores/AlertStore.ts)
+  for more accurate information.
+</Callout>
+
+```tsx
+export type Alert = {
+  /**
+   * The key of the alert. Used to prevent duplicate alerts from being added to the queue.
+   *
+   * If the key is already in the queue, the alert will not be added.
+   */
+  key?: string;
+  /**
+   * The icon to display in the alert.
+   */
+  icon: string;
+  /**
+   * The title of the alert.
+   */
+  title: string;
+  /**
+   * Custom style for the title.
+   */
+  titleStyle: StyleProp<TextStyle>;
+  /**
+   * The message of the alert.
+   */
+  message: string;
+  /**
+   * Custom style for the message.
+   */
+  messageStyle: StyleProp<TextStyle>;
+  /**
+   * The text to display on the "OK" button.
+   */
+  okText: string;
+  /**
+   * The text to display on the "Cancel" button.
+   */
+  cancelText: string;
+  /**
+   * Whether or not the alert can be dismissed (e.g. by clicking outside of the alert).
+   */
+  dismissable: boolean;
+  /**
+   * Shows a cover behind the alert to hide the rest of the screen.
+   */
+  cover?: boolean;
+  /**
+   * The action to perform when the "OK" button is clicked.
+   *
+   * if the action returns `string`, the alert will NOT be dismissed and the string will be displayed as an error.
+   *
+   * Return an empty string to keep the alert open without displaying an error.
+   *
+   * @param values All input values in the alert.
+   */
+  okAction: (values: string[]) => string | void | Promise<string | void>;
+  /**
+   * The action to perform when the "Cancel" button is clicked.
+   *
+   * if the action returns `string`, the alert will NOT be dismissed and the string will be displayed as an error.
+   *
+   * Return an empty string to keep the alert open without displaying an error.
+   *
+   * @param values All input values in the alert.
+   */
+  cancelAction: (values: string[]) => string | void | Promise<string | void>;
+  /**
+   * The fields to display in the alert.
+   * @see AlertField
+   */
+  fields: Partial<AlertField>[];
+};
+```

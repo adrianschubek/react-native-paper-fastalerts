@@ -1,0 +1,139 @@
+---
+title: AlertField
+---
+
+# AlertField
+
+import { Callout } from "nextra/components";
+
+<Callout type="info" emoji="ℹ️">
+  The following type definitons are updated on a best effort basis and may not
+  be always up to date. Checkout the [type
+  definition](https://github.com/adrianschubek/react-native-paper-fastalerts/blob/main/src/stores/AlertStore.ts)
+  for more accurate information.
+</Callout>
+
+```tsx
+type CommonInput = {
+  /**
+   * The label to display for the input.
+   */
+  label: string;
+  /**
+   * The helper text to display for the input.
+   */
+  helperText: string;
+  /**
+   * The placeholder text to display for the input.
+   */
+  placeholder: string;
+  /**
+   * The default value of the input.
+   */
+  defaultValue: string;
+  /**
+   * Whether or not the input is required.
+   */
+  required: boolean;
+  /**
+   * The icon to display for the input.
+   */
+  icon: string;
+  /**
+   * The validator function to use for the input. It should return true if the input is valid, and false otherwise.
+   * @param value The value of the input.
+   * @param allValues All input values in the alert.
+   */
+  validator: (value: string, allValues: string[]) => boolean;
+  /**
+   * The error text to display if the input is invalid.
+   */
+  errorText: string;
+  /**
+   * Whether or not the input is disabled.
+   */
+  disabled?: boolean;
+};
+
+type TextInput = CommonInput & {
+  /**
+   * The type of the input.
+   */
+  type: "text" | "number" | "password";
+  /**
+   * Whether or not the input should support multiline text.
+   */
+  multiline: boolean;
+};
+
+type CheckboxInput = CommonInput & {
+  type: "checkbox";
+};
+
+type ButtonInput = CommonInput & {
+  type: "button";
+  /**
+   * The action to perform when the button is clicked.
+   *
+   * if the action returns `string`, the alert will NOT be dismissed and the string will be displayed as an error.
+   *
+   * Return an empty string to keep the alert open without displaying an error.
+   *
+   * @param values All input values in the alert.
+   */
+  action: (values: string[]) => string | void | Promise<string | void>;
+};
+
+type SearchSelectInput = CommonInput & {
+  type: "search-select";
+  /**
+   * key-value pairs of options to display in the select.
+   */
+  data: { key: string; value: string; label?: string }[];
+  /**
+   * Number of options to display in the (virtualized) list.
+   */
+  visibleOptions: number;
+};
+
+type SelectInput = Omit<SearchSelectInput, "type"> & {
+  type: "select";
+};
+
+type RadioInput = Omit<SearchSelectInput, "type"> & {
+  type: "radio";
+};
+
+type SearchRadioInput = Omit<SearchSelectInput, "type"> & {
+  type: "search-radio";
+};
+
+type CustomInput = CommonInput & {
+  type: "custom";
+  /**
+   * The render function to use for the input.
+   * @param value The current value of the input.
+   * @param setValue The function to use to set the value of the input.
+   * @param allValues All input values in the alert.
+   * @param tempValue The temporary internal value of the input.
+   * @param setTempValue The function to use to set the temporary internal value of the input.
+   */
+  render: (
+    value: string,
+    setValue: (newVal: string) => void,
+    allValues: string[],
+    tempValue: string,
+    setTempValue: (newVal: string) => void
+  ) => JSX.Element;
+};
+
+type AlertField =
+  | TextInput
+  | CheckboxInput
+  | ButtonInput
+  | SearchSelectInput
+  | SelectInput
+  | RadioInput
+  | SearchRadioInput
+  | CustomInput;
+```

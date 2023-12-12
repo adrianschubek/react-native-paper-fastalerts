@@ -1,0 +1,18 @@
+{
+  "-- Guide": {
+    "type": "separator",
+    "title": "Guide"
+  },
+  "index": "Introduction",
+  "getting-started": "Getting Started",
+  "fields": "Fields",
+  "-- Examples": {
+    "type": "separator",
+    "title": "Examples"
+  },
+  "-- Advanced": {
+    "type": "separator",
+    "title": "Advanced"
+  },
+  "ts-types": "API"
+}
