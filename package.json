@@ -1,7 +1,12 @@
 {
   "name": "react-native-paper-fastalerts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A fast and easy to use alert and dialog system for react-native-paper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrianschubek/react-native-paper-fastalerts.git"
+  },
+  "homepage": "https://fastalerts.adriansoftware.de",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
