@@ -1,0 +1,21 @@
+{
+  "name": "react-native-paper-fastalerts",
+  "version": "0.1.0",
+  "description": "A fast and easy to use alert and dialog system for react-native-paper",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Adrian Schubek",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-native-paper": "^5.11.0",
+    "zustand": "^4.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "typescript": "^5.3.3"
+  }
+}
