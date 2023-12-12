@@ -115,7 +115,7 @@ type CustomInput = CommonInput & {
     setValue: (newVal: string) => void,
     allValues: string[],
     tempValue: string,
-    setTempValue: (newVal: string) => void,
+    setTempValue: (newVal: string) => void
   ) => JSX.Element;
 };
 
@@ -250,7 +250,7 @@ type AlertsStoreType = {
   /**
    * The current alert to display.
    */
-  activeAlert: Alert;
+  activeAlert: Alert | null;
   /**
    * The queue of alerts to display.
    */
@@ -273,7 +273,7 @@ type AlertsStoreType = {
 export const useAlertsStore = create<AlertsStoreType>((set, get) => ({
   activeAlert: null,
   alerts: [],
-  dispatch: (alert: Alert) => {
+  dispatch: (alert: Partial<Alert>) => {
     // ignore duplicate alerts already in queue
     if (
       alert.key &&
@@ -312,7 +312,7 @@ export const useAlertsStore = create<AlertsStoreType>((set, get) => ({
  */
 export function toArray<T>(
   value?: string,
-  mapFn: (el: string) => T = (el) => el as T,
+  mapFn: (el: string) => T = (el) => el as T
 ): T[] {
   return (value ?? "").split("|").map(mapFn) as T[];
 }

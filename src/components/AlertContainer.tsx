@@ -68,7 +68,7 @@ function AlertContainer() {
       setValues(() =>
         activeAlert?.fields?.length !== 0
           ? activeAlert.fields.map((field) => field.defaultValue ?? "")
-          : [],
+          : []
       );
       setTempError(() => null);
       setTempValues(() => activeAlert?.fields?.map(() => "") ?? []);
@@ -191,7 +191,7 @@ function AlertContainer() {
                         </HelperText>
                       )}
                       {field.errorText &&
-                        !field.validator(values[i], values) && (
+                        !field.validator!(values[i], values) && (
                           <HelperText type="error" visible={true}>
                             {field.errorText}
                           </HelperText>
@@ -207,7 +207,7 @@ function AlertContainer() {
                               newTempValues[i] = "busy";
                               return newTempValues;
                             });
-                            const ret = await field.action(values);
+                            const ret = await field.action!(values);
                             if (typeof ret === "string") {
                               setTempError(ret);
                               return;
@@ -267,7 +267,7 @@ function AlertContainer() {
                         </HelperText>
                       )}
                       {field.errorText &&
-                        !field.validator(values[i], values) && (
+                        !field.validator!(values[i], values) && (
                           <HelperText type="error" visible={true}>
                             {field.errorText}
                           </HelperText>
@@ -297,9 +297,11 @@ function AlertContainer() {
                             setTempValues(newValues);
                           }}
                           error={
-                            field.data
-                              .filter(({ key }) => key.includes(tempValues[i]))
-                              .filter((_, i) => i < field.visibleOptions)
+                            field
+                              .data!.filter(({ key }) =>
+                                key.includes(tempValues[i])
+                              )
+                              .filter((_, i) => i < field.visibleOptions!)
                               .length === 0
                           }
                         />
@@ -312,9 +314,11 @@ function AlertContainer() {
                               : undefined,
                         }}
                         nestedScrollEnabled={true}
-                        data={field.data
-                          .filter(({ key }) => key.includes(tempValues[i]))
-                          .filter((_, i) => i < field.visibleOptions)
+                        data={field
+                          .data!.filter(({ key }) =>
+                            key.includes(tempValues[i])
+                          )
+                          .filter((_, i) => i < field.visibleOptions!)
                           .map(({ key, value, label }) => ({
                             key: String(key),
                             value: String(value),
@@ -436,9 +440,9 @@ function AlertContainer() {
                           );
                         }}
                       />
-                      {field.data
-                        .filter(({ key }) => key.includes(tempValues[i]))
-                        .filter((_, i) => i < field.visibleOptions).length ===
+                      {field
+                        .data!.filter(({ key }) => key.includes(tempValues[i]))
+                        .filter((_, i) => i < field.visibleOptions!).length ===
                       0 ? (
                         <HelperText type={"error"}>No results</HelperText>
                       ) : (
@@ -453,12 +457,12 @@ function AlertContainer() {
                       )}
                     </>
                   ) : field.type === "custom" ? (
-                    field.render(
+                    field.render!(
                       values[i],
                       (newValue) => (values[i] = newValue),
                       values,
                       tempValues[i],
-                      (newValue) => (tempValues[i] = newValue),
+                      (newValue) => (tempValues[i] = newValue)
                     )
                   ) : (
                     <Text>Unknown field type: {field.type}</Text>
@@ -533,7 +537,7 @@ function AlertContainer() {
                       field.required &&
                       (values[i]?.length === 0 ||
                         (field.validator &&
-                          !field.validator(values[i], values))),
+                          !field.validator(values[i], values)))
                   )
                 }
               >
@@ -590,10 +594,12 @@ function AlertContainer() {
 
 const withPortal =
   <P,>(Component: FC<P>) =>
-  (props: P) => (
-    <Portal>
-      <Component {...props} />
-    </Portal>
-  );
+  (props: P) =>
+    (
+      <Portal>
+        {/* @ts-expect-error */}
+        <Component {...props} />
+      </Portal>
+    );
 
 export default withPortal(AlertContainer);
