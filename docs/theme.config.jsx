@@ -23,5 +23,10 @@ export default {
         </a>
       </span>
     )
+  },
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – react-native-paper-fastalerts',
+    }
   }
 };
