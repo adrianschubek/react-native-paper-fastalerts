@@ -1,0 +1,68 @@
+### How to prevent duplicate alerts?
+
+Simply set the `key` option to a specific value. If a new alert with the same key is triggered while the old one is active or queued, this new alert will be dismissed and never displayed.
+
+```tsx
+alert({
+  key: "im-unique",
+  title: "Hello World!",
+});
+
+alert({
+  // this alert will be dismissed immediately
+  key: "im-unique",
+  title: "Goodbye World!",
+});
+```
+
+### How can I get the values from a `select` or `search-select` as an array?
+Use the `toArray` method to convert the value to an array.
+```tsx
+import { toArray } from "react-native-paper-fastalerts";
+```
+```tsx
+alert({
+  okAction(values) {
+    const arr = toArray(values[0]); // e.g: ->  ["b", "l", "m"]
+  },
+  fields: [
+    {
+      type: "select",
+      data: [
+        { key: "Berlin", value: "b" },
+        { key: "Paris", value: "p" },
+        { key: "London", value: "l" },
+        { key: "Madrid", value: "m" },
+      ],
+    },
+  ],
+});
+```
+Internally the `select` and `search-select` fields store the values as a concatenated string with a separator.
+
+### Do `action`, `okAction` and `cancelAction` support async functions?
+
+Yes.
+
+### What options are required?
+
+None. All options are optional.
+
+### What is the difference between `alert`, `confirm`, `success`, ...?
+
+The only difference is that some options such as `icon` and `title` are set to a default value. However you can override and use any of them for any purpose.
+
+### I want to use a custom component inside the alert. How can I do that?
+
+Use the `custom` field type.
+  
+```tsx
+alert({
+  fields: [{
+    type: "custom",
+    render(value, setValue, allValues, tempValue, setTempValue) {
+      return <MyComponent />
+    },
+  }]
+})
+```

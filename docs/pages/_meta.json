@@ -6,8 +6,12 @@
   "index": "Introduction",
   "install": "Quick Start 🚀",
   "usage": "Usage",
+  "options": "Options",
   "fields": "Fields",
+  "styling": "Styling",
+  "faq": "FAQ",
   "-- Examples": {
+    "display": "hidden",
     "type": "separator",
     "title": "Examples"
   },
@@ -15,5 +19,6 @@
     "type": "separator",
     "title": "Advanced"
   },
-  "ts-types": "API"
+  "ts-types": "API",  
+  "tempvalues": "Temporary Values"
 }
