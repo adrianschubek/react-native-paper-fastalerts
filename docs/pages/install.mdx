@@ -62,43 +62,41 @@ export default function HelloWorld() {
   // or use:  const alerts = useAlerts();
 
   return (
-    <>
-      <Button
-        onPress={() =>
-          alert({
-            // all options are optional and have sensible defaults
-            message: "What is the capital of Germany?",
-            okText: "Submit 🔥",
-            okAction(values) {
-              if (values[0] === "b") {
-                alert({ message: "Correct 🤗" });
-              } else return "Wrong 😅 Try again.";
+    <Button
+      onPress={() =>
+        alert({
+          // all options are optional and have sensible defaults
+          message: "What is the capital of Germany?",
+          okText: "Submit 🔥",
+          okAction(values) {
+            if (values[0] === "b") {
+              alert({ message: "Correct 🤗" });
+            } else return "Wrong 😅 Try again.";
+          },
+          fields: [
+            {
+              type: "radio",
+              data: [
+                { key: "Berlin", value: "b" },
+                { key: "Paris", value: "p" },
+                { key: "London", value: "l" },
+                { key: "Madrid", value: "m" },
+              ],
             },
-            fields: [
-              {
-                type: "radio",
-                data: [
-                  { key: "Berlin", value: "b" },
-                  { key: "Paris", value: "p" },
-                  { key: "London", value: "l" },
-                  { key: "Madrid", value: "m" },
-                ],
-              },
-            ],
-          })
-        }
-      >
-        Ask me a question!
-      </Button>
-    </>
+          ],
+        })
+      }
+    >
+      Ask me a question!
+    </Button>
   );
 }
 ```
 
 <div style={{display: "flex", justifyContent: "space-evenly"}} >
 
-<video width={256} loop autoPlay src={"/install-quickstart-light.mp4"} />
-<video width={256} loop autoPlay src={"/install-quickstart-dark.mp4"} />
+<video width={256} loop autoPlay muted playsinline src={"/install-quickstart-light.mp4"} />
+<video width={256} loop autoPlay muted playsinline src={"/install-quickstart-dark.mp4"} />
 
 </div>
 
