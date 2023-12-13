@@ -26,7 +26,7 @@ Actions support async functions, so you can use `await` inside them.
 ```tsx {3-5}
 confirm({
   title: "Buy item?",
-  okAction(values) {
+  async okAction(values) {
     const { error } = await buyItem(values[0]);
   },
   fields: [
@@ -44,7 +44,7 @@ Returning a non-empty string from an action handler will display an error messag
 ```tsx {5}
 confirm({
   title: "Buy item?",
-  okAction(values) {
+  async okAction(values) {
     const { error } = await buyItem(values[0]);
     if (error) return "Could not buy item";
   },
@@ -59,7 +59,7 @@ Return an empty string `""` to keep the alert open without displaying an error m
 ```tsx {6}
 confirm({
   title: "Buy item?",
-  okAction(values) {
+  async okAction(values) {
     const { error } = await buyItem(values[0]);
     if (error) return "Could not buy item";
     return "";
