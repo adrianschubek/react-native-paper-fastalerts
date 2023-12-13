@@ -1,0 +1,94 @@
+# Getting Started
+
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+### Preqrequisites
+
+- React Native or Expo project.
+
+This library is compatible with most versions of react-native and react-native-paper.
+
+### Install the package
+ 
+import { Tabs } from 'nextra/components'
+ 
+<Tabs items={['npm', 'yarn']}>
+  <Tabs.Tab>
+  
+  
+  ```sh
+  npm install react-native-paper-fastalerts
+  ```
+  
+  
+  </Tabs.Tab>
+  <Tabs.Tab>
+  
+  
+  ```sh
+  yarn add react-native-paper-fastalerts
+  ```
+
+  
+  </Tabs.Tab>
+</Tabs>
+ 
+### Setup the container
+ 
+You should include the `AlertContainer` component somewhere in the main entry point of your app.
+```tsx filename="src/App.tsx" {1,6}
+import { AlertContainer } from "react-native-paper-fastalerts";
+
+export default function App() {
+  return (
+    <>
+      <AlertContainer />
+    </>
+  );
+}
+```
+
+### Ready ✅
+
+You are all set to use the library. Check out the [usage](/usage) section to learn more.
+
+Just import the `useAlerts` hook and start using it.
+
+```tsx
+import { useAlerts } from 'react-native-paper-fastalerts';
+
+export default function HelloWorld() {
+  const { alert /*, confirm, warning, error, info */ } = useAlerts();
+  // or use:  const alerts = useAlerts();
+
+  return <>
+    <Button onPress={() =>
+      alert({
+        // all options are optional and have sensible defaults
+        message: "What is the capital of Germany?",
+        fields: [
+          {
+            type: "radio",
+            data: [
+              { key: "Berlin", value: "b" },
+              { key: "Paris", value: "p" },
+              { key: "London", value: "l" },
+              { key: "Madrid", value: "m" },
+            ]
+          }
+        ],
+        okAction(values) {
+          if (values[0] === "b") {
+            alert({ message: "Correct 🤗" })
+          } else {
+            return "Wrong 😅";
+          }
+        }
+      })
+    }>Ask me a question!</Button> 
+  </>
+}
+```
+
+</Steps>
