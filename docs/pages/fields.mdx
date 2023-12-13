@@ -1,2 +1,20 @@
 # Fields
 
+Fields are the basic building blocks of a form. They are the elements that the user interacts with. They can be text fields, checkboxes, radio buttons or even custom components that you create.
+
+Most fields have an internal state that is updated when the user interacts with them. For example, a text field has a value that is updated when the user types text into it. A checkbox has a checked state that is updated when the user clicks on it.
+
+All these input values will be passed to an [action handler](actions.mdx) when the user for example presses the alert buttons ('OK', 'Cancel').
+
+An alert can contain any number of fields. The `fields` property is an array of field objects. Each object has at least a `type` attribute that determines what kind of field it is.
+
+```tsx {3-7}
+alert({
+  title: "What is the capital of Germany?",
+  fields: [
+    {
+      type: "text",
+    },
+  ],
+});
+```
