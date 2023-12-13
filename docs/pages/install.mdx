@@ -54,13 +54,12 @@ You are all set to use the library. Check out the [usage](/usage) section to lea
 
 Just import the `useAlerts` hook and start using it.
 
-```tsx {1,4,9-30}
+```tsx {1,4,9-31}
 import { useAlerts } from "react-native-paper-fastalerts";
 
 export default function HelloWorld() {
   const { alert /*, confirm, warning, error, info */ } = useAlerts();
   // or use:  const alerts = useAlerts();
-
   return (
     <Button
       onPress={() =>
