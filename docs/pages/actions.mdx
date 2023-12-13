@@ -1,0 +1,71 @@
+# Actions
+
+Actions are triggered when the user either clicks an alert button ('OK','Cancel') or a button field.
+
+Action handlers will be passed all values of the form fields as a string array. The order of the values is the same as the order of the fields in the `fields` array.
+
+```tsx {2-6}
+alert({
+  okAction(values) {
+    const f1 = values[0] 
+    const f2 = values[1] 
+    const f3 = values[2] 
+  },
+  fields: [
+    { type: "text" }, // --> values[0]
+    { type: "text" }, // --> values[1]
+    { type: "text" }, // --> values[2]
+  ],
+});
+```
+
+### asnyc / await
+
+Actions support async functions, so you can use `await` inside them.
+
+```tsx {3-5}
+confirm({
+  title: "Buy item?",
+  okAction(values) {
+    const { error } = await buyItem(values[0]);
+  },
+  fields: [
+    { type: "text", label: "Item"}
+  ]
+});
+```
+
+### Error handling
+
+By default the alert will close when an action handler returns.
+
+Returning a non-empty string from an action handler will display an error message in the alert and the alert will remain open.
+
+```tsx {5}
+confirm({
+  title: "Buy item?",
+  okAction(values) {
+    const { error } = await buyItem(values[0]);
+    if (error) return "Could not buy item";
+  },
+  fields: [
+    { type: "text", label: "Item"}
+  ]
+});
+```
+
+Return an empty string `""` to keep the alert open without displaying an error message.
+
+```tsx {6}
+confirm({
+  title: "Buy item?",
+  okAction(values) {
+    const { error } = await buyItem(values[0]);
+    if (error) return "Could not buy item";
+    return "";
+  },
+  fields: [
+    { type: "text", label: "Item"}
+  ]
+});
+```
