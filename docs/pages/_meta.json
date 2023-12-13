@@ -4,10 +4,12 @@
     "title": "Guide"
   },
   "index": "Introduction",
-  "install": "Quick Start 🚀",
+  "quickstart": "Quick Start 🚀",
   "usage": "Usage",
   "options": "Options",
   "fields": "Fields",
+  "actions": "Actions",
+  "validation": "Validation",
   "styling": "Styling",
   "faq": "FAQ",
   "-- Examples": {

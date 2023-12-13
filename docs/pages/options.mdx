@@ -1,0 +1,81 @@
+# Options
+
+All options are optional. The options object provided by the user will override the default alert options. That means the following is a valid alert configuration:
+
+```tsx
+alert({});
+```
+
+Many options can be set to `""` to hide them from the alert and the styling will also reflect this.
+
+### Title & Message
+
+```tsx {2,3}
+alert({
+  title: "Hello World",
+  message: "This is an alert message",
+});
+```
+
+### Icons
+
+By default icons Material Design icons are used. You can find them out [here](https://pictogrammers.com/library/mdi/)
+
+```tsx {2}
+alert({
+  icon: "account",
+});
+```
+
+### Alert Buttons
+
+An alert can contain up to two dialog buttons.
+
+```tsx {2,3}
+alert({
+  okText: "First",
+  cancelText: "Second",
+})
+```
+
+Only show one button:
+
+```tsx {3}
+alert({
+  okText: "First",
+  cancelText: "",
+})
+```
+
+### Prevent closing by clicking outside
+
+```tsx {2}
+alert({
+  dismissable: false,
+})
+```
+
+### Hide background behind alert
+
+```tsx {2}
+alert({
+  cover: true,
+})
+```
+
+### Prevent duplicates
+
+You can use the `key` option to prevent duplicate alerts from being shown. If a new alert with the same key is triggered while the old one is active or queued, this new alert will be dismissed and never displayed.
+
+```tsx
+alert({
+  key: "im-unique",
+  title: "Hello World!",
+});
+
+alert({
+  // this alert will be dismissed immediately
+  key: "im-unique",
+  title: "Goodbye World!",
+});
+```

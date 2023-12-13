@@ -1,6 +1,73 @@
 # Usage Guide
 
-Use the `useAlerts` hook to trigger alerts and dialogs in your app.
+## Basics
 
-```tsx
+When you call an alert function, the alert is added to a queue. The queue is processed in order, so you can call multiple alerts in a row and they will be shown one after another. Only one alert can be active (= shown) at a time though.
+
+Alerts can be called from anywhere in your app, even from within other alerts and share values between them which makes chaining alerts/dialogs super easy.
+
+## Container
+
+We do not need to wrap React in a provider but we still need some way to display the alerts. For this we use the `AlertContainer` component. It should be placed at the root of your app, so alerts can be displayed anywhere in the app. Its responsibility is to display the active alert.
+
+```tsx filename="App.tsx" {1,6}
+import { AlertContainer } from "react-native-paper-fastalerts";
+
+export default function App() {
+  return (
+    <>
+      <AlertContainer />
+    </>
+  );
+}
+```
+
+## Hook
+
+Use the `useAlerts` hook to trigger alerts and dialogs in your app. 
+
+```tsx {1,4,7}
 import { useAlerts } from "react-native-paper-fastalerts";
+
+export default function Foo() {
+  const alerts = useAlerts();
+  return (
+    <View>
+      <Button onPress={() => alerts.info({title: "It works"})}>Alert</Button>
+    </View>
+  );
+}
+```
+You may also use [object destructuring](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) instead to get the individual alert functions.
+
+```tsx {4,7}
+import { useAlerts } from "react-native-paper-fastalerts";
+
+export default function Foo() {
+  const { info } = useAlerts();
+  return (
+    <View>
+      <Button onPress={() => info({title: "It works"})}>Alert</Button>
+    </View>
+  );
+}
+```
+
+`useAlerts` returns an object with alert functions with some default values. 
+An alert function accepts a single parameter [`options`](options.mdx) which contains every option that can be passed to an alert. 
+
+Currently these functions are available:
+- `alert(options)`
+- `success(options)`
+- `info(options)`
+- `error(options)`
+- `warning(options)`
+- `confirm(options)`
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+The only difference between these functions is the default initial value of `options`. For example a `confirm` alert has its buttons set to 'Ok' and 'Cancel'. You can override these default values by just setting a value in the `options` object. So you can technically use any of these functions for any alert type.
+</Callout>
+
+In the following chapters you will learn more about the options and how to use them.
