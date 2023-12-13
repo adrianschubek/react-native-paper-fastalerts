@@ -71,7 +71,9 @@ export default function HelloWorld() {
           okAction(values) {
             if (values[0] === "b") {
               alert({ message: "Correct 🤗" });
-            } else return "Wrong 😅 Try again.";
+            } else {
+              return "Wrong 😅 Try again.";
+            }
           },
           fields: [
             {
