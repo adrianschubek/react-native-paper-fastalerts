@@ -67,7 +67,7 @@ alert({
 
 You can use the `key` option to prevent duplicate alerts from being shown. If a new alert with the same key is triggered while the old one is active or queued, this new alert will be dismissed and never displayed.
 
-```tsx
+```tsx {2,8}
 alert({
   key: "im-unique",
   title: "Hello World!",
