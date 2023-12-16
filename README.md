@@ -1,4 +1,5 @@
 # react-native-paper-fastalerts
+[![npm](https://img.shields.io/npm/v/react-native-paper-fastalerts?style=flat-square&color=blue)](https://www.npmjs.com/package/react-native-paper-fastalerts)
 ![](https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)
 
 A fast and easy to use alert and dialog system for react-native-paper
