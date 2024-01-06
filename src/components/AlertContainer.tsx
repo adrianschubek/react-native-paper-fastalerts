@@ -207,7 +207,7 @@ function AlertContainer() {
                               newTempValues[i] = "busy";
                               return newTempValues;
                             });
-                            const ret = await field.action!(values);
+                            const ret = await field.action!(values, setValues);
                             if (typeof ret === "string") {
                               setTempError(ret);
                               return;
@@ -493,7 +493,7 @@ function AlertContainer() {
           <Dialog.Actions>
             {cancelText !== "" && (
               <Button
-                style={{ paddingHorizontal: 10 }}
+                contentStyle={{ paddingHorizontal: 10 }}
                 mode="contained-tonal"
                 disabled={busy}
                 onPress={async () => {
@@ -515,7 +515,7 @@ function AlertContainer() {
             )}
             {okText !== "" && (
               <Button
-                style={{ paddingHorizontal: 10 }}
+                contentStyle={{ paddingHorizontal: 10 }}
                 mode="contained"
                 onPress={async () => {
                   try {

@@ -65,8 +65,12 @@ type ButtonInput = CommonInput & {
    * Return an empty string to keep the alert open without displaying an error.
    *
    * @param values All input values in the alert.
+   * @param setValues The function to use to set the values of the inputs. Current values passed as argument. Return the new values.
    */
-  action: (values: string[]) => string | void | Promise<string | void>;
+  action: (
+    values: string[],
+    setValues: React.Dispatch<React.SetStateAction<string[]>>
+  ) => string | void | Promise<string | void>;
 };
 type SearchSelectInput = CommonInput & {
   type: "search-select";
