@@ -1,7 +1,7 @@
 import { StyleProp, TextStyle } from "react-native";
 import { create } from "zustand";
 
-type CommonInput = {
+export type CommonInput = {
   /**
    * The label to display for the input.
    */
@@ -42,7 +42,7 @@ type CommonInput = {
   disabled?: boolean;
 };
 
-type TextInput = CommonInput & {
+export type TextInput = CommonInput & {
   /**
    * The type of the input.
    */
@@ -52,10 +52,10 @@ type TextInput = CommonInput & {
    */
   multiline: boolean;
 };
-type CheckboxInput = CommonInput & {
+export type CheckboxInput = CommonInput & {
   type: "checkbox";
 };
-type ButtonInput = CommonInput & {
+export type ButtonInput = CommonInput & {
   type: "button";
   /**
    * The action to perform when the button is clicked.
@@ -72,7 +72,7 @@ type ButtonInput = CommonInput & {
     setValues: React.Dispatch<React.SetStateAction<string[]>>
   ) => string | void | Promise<string | void>;
 };
-type SearchSelectInput = CommonInput & {
+export type SearchSelectInput = CommonInput & {
   type: "search-select";
   /**
    * key-value pairs of options to display in the select.
@@ -84,18 +84,19 @@ type SearchSelectInput = CommonInput & {
   visibleOptions: number;
 };
 
-type SelectInput = Omit<SearchSelectInput, "type"> & {
+export type SelectInput = Omit<SearchSelectInput, "type"> & {
   type: "select";
 };
 
-type RadioInput = Omit<SearchSelectInput, "type"> & {
+export type RadioInput = Omit<SearchSelectInput, "type"> & {
   type: "radio";
 };
 
-type SearchRadioInput = Omit<SearchSelectInput, "type"> & {
+export type SearchRadioInput = Omit<SearchSelectInput, "type"> & {
   type: "search-radio";
 };
 
+// TODO
 type DropdownInput = CommonInput & {
   type: "dropdown";
   /**
@@ -104,7 +105,7 @@ type DropdownInput = CommonInput & {
   data: { key: string; value: string }[];
 };
 
-type CustomInput = CommonInput & {
+export type CustomInput = CommonInput & {
   type: "custom";
   /**
    * The render function to use for the input.
@@ -123,7 +124,7 @@ type CustomInput = CommonInput & {
   ) => JSX.Element;
 };
 
-type AlertField =
+export type AlertField =
   | TextInput
   | CheckboxInput
   | ButtonInput
@@ -250,7 +251,7 @@ export const DEFAULT_ALERT_INPUT: AlertField = {
   multiline: false,
 };
 
-type AlertsStoreType = {
+export type AlertsStoreType = {
   /**
    * The current alert to display.
    */
